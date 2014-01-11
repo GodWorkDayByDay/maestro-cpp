@@ -1,0 +1,9 @@
+#!/bin/bash
+(
+	echo -en "\x84\x00\x00\x30"
+	echo -en "\x84\x01\x00\x30"
+	echo -en "\x84\x02\x00\x30"
+	echo -en "\x84\x03\x00\x30"
+	echo -en "\x84\x04\x00\x30"
+	echo -en "\x84\x05\x00\x30"
+) | sudo tee /dev/ttyACM0 > /dev/null

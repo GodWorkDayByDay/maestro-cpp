@@ -18,14 +18,14 @@ class CHANNEL;
 
 class MAESTRO {
 private:
-	~MAESTRO();
 	const int fd;
 	std::vector<CHANNEL> channels;
 	friend CHANNEL;
 public:
 	MAESTRO(const char * const device, const uint8_t channels);
 	MAESTRO(const uint8_t channels);
-	const CHANNEL& operator [] (const uint8_t channel) const
+	~MAESTRO();
+	CHANNEL& operator [] (const uint8_t channel)
 	{
 		return channels[channel];
 	}
