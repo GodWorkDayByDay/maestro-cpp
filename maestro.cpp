@@ -59,6 +59,11 @@ void CHANNEL::setQU(const uint16_t target) const
 	}
 }
 
+void CHANNEL::setAP(const uint8_t percent) const {
+	const uint16_t min = 0x0800 + 1, max = 0x2800 - 1;
+	setQU((percent * (max - min)) / 100 + min);
+}
+
 void CHANNEL::setSpeedQU10M(const uint16_t value) const
 {
 	uint8_t request[] = {0x84, index, (uint8_t) (value & 0x7f), (uint8_t) (value >> 7 & 0x7f)};

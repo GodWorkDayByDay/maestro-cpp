@@ -42,6 +42,8 @@ public:
 	uint16_t getQU() const;
 	/* Set the raw position of a motor in 0.25us units */
 	void setQU(const uint16_t target) const;
+	/* Set the position of a motor as angular percentage */
+	void setAP(const uint8_t percent) const;
 	/* Set the motor speed in 0.25us/10ms units */
 	void setSpeedQU10M(const uint16_t target) const;
 	/* Set the motor speed in 0.25us / d(seconds) units */
