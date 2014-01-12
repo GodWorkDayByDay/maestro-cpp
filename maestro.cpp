@@ -59,9 +59,11 @@ void CHANNEL::setQU(const uint16_t target) const
 	}
 }
 
-void CHANNEL::setAP(const uint8_t percent) const {
+void CHANNEL::setAP(const uint8_t percent) const
+{
+	uint8_t pc = (percent > 100) ? 100 : percent;
 	const uint16_t min = 0x0800 + 1, max = 0x2800 - 1;
-	setQU((percent * (max - min)) / 100 + min);
+	setQU(((uint32_t) pc * (max - min)) / 100 + min);
 }
 
 void CHANNEL::setSpeedQU10M(const uint16_t value) const
