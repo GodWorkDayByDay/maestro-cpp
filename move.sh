@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#	Syntax:
+#		./move  { position | percentage}  [ channel(s) ]
+#
+#	e.g.
+#		./move 50%
+#		./move 3080 "2 4 5"
+
+
 V="$1"
 
 MIN=2049
@@ -40,9 +48,15 @@ do
 	BYTES=0$BYTES
 done
 
-echo "84:xx:$BYTES" 1>&2
+CHANS="$2"
 
-for CHAN in `seq 0 5`
+if [ -z "$CHANS" ]
+then
+	CHANS=`seq 0 5`
+fi
+
+for CHAN in $CHANS
 do
+	echo "84:0$CHAN:$BYTES" 1>&2
 	echo -n "840$CHAN$BYTES"
 done | xxd -r -p | sudo tee /dev/ttyACM0 > /dev/null
